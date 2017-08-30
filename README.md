@@ -218,11 +218,18 @@ Tested on Ubuntu 14.04 with a Titan X GPU and Intel Xeon CPU E5-2620 v2 @ 2.10GH
 py-faster-rcnn code can also work properly, but I do not add any other feature(such as ResNet and OHEM).
 
 ### Extra
+Testing:
+```
+python tools/demo_solar.py --cfg experiments/cfgs/rfcn_end2end_SP.yml --input ../addressdata-cache/nearmap_images/test/
+```
+
 training on custom dataset (solar_panel):
 
 `PT_DIR="solar_panel";   ITERS=110000; TRAIN_IMDB="solar_panel_train";   NET=ResNet-101`
 
-```./tools/train_net.py --gpu 0   --solver models/solar_panel/ResNet-101/rfcn_end2end/solver.prototxt   --weights data/imagenet_models/ResNet-101-model.caffemodel   --imdb solar_panel_train  --iters 60000  --cfg experiments/cfgs/rfcn_end2end.yml```    
+```
+./tools/train_net.py --gpu 0   --solver models/solar_panel/ResNet-101/rfcn_end2end/solver.prototxt   --weights data/imagenet_models/ResNet-101-model.caffemodel   --imdb solar_panel_train  --iters 40000  --cfg experiments/cfgs/rfcn_end2end.yml
+```
 
 ```
   time ./tools/train_net.py --gpu ${GPU_ID} 
