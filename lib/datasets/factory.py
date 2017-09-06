@@ -10,8 +10,14 @@
 __sets = {}
 
 from datasets.pascal_voc import pascal_voc
+from datasets.solar_panel import solar_panel
 from datasets.coco import coco
 import numpy as np
+
+# set up solar_panel_train 
+for split in ['train', 'val', 'trainval', 'test']:
+    name = 'solar_panel_{}'.format(split)
+    __sets[name] = (lambda split=split: solar_panel(split))
 
 # Set up voc_<year>_<split> using selective search "fast" mode
 for year in ['2007', '2012', '0712']:
