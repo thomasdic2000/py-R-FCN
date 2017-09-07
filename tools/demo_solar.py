@@ -36,7 +36,7 @@ CLASSES = ('__background__',
 #           'sheep', 'sofa', 'train', 'tvmonitor')
 
 NETS = {'ResNet-101': ('ResNet-101',
-		  'resnet101_rfcn_iter_40000.caffemodel'), 
+		  'solar_resnet101_rfcn_iter_40000.caffemodel'), 
 #                  'resnet101_rfcn_final.caffemodel'),
         'ResNet-50': ('ResNet-50',
                   'resnet50_rfcn_final.caffemodel')}
@@ -146,14 +146,14 @@ def demo(net, image_name, img_path ):
 
 def parse_args():
     """Parse input arguments."""
-    parser = argparse.ArgumentParser(description='Faster R-CNN demo')
+    parser = argparse.ArgumentParser(description=' R-FCN demo')
     parser.add_argument('--gpu', dest='gpu_id', help='GPU device id to use [0]',
                         default=0, type=int)
     parser.add_argument('--cpu', dest='cpu_mode',
                         help='Use CPU mode (overrides --gpu)',
                         action='store_true')
     parser.add_argument('--net', dest='demo_net', help='Network to use [ResNet-101]',
-                        choices=NETS.keys(), default='ResNet-101')
+                        default='ResNet-101')
     parser.add_argument('--cfg', dest='demo_cfg', help='Optional config to use',
                         default=None, type=str)
     parser.add_argument('--input', dest='input_dir', help='input directory to use',
@@ -171,10 +171,13 @@ if __name__ == '__main__':
 	cfg_file = args.demo_cfg
         cfg_from_file(cfg_file)	
 
-    prototxt = os.path.join(cfg.ROOT_DIR, 'models/solar_panel',  NETS[args.demo_net][0],
-                            'rfcn_end2end', 'test_agnostic.prototxt')
-    caffemodel = os.path.join(cfg.ROOT_DIR, 'output/rfcn_end2end/solar_panel',
-                              NETS[args.demo_net][1])
+    prototxt = 'models/solar_panel/ResNet-101/rfcn_end2end/test_agnostic.prototxt'
+    #prototxt = os.path.join(cfg.ROOT_DIR, 'models/solar_panel',  NETS[args.demo_net][0],
+    #                        'rfcn_end2end', 'test_agnostic.prototxt')
+#    if args.demo_net is None:
+#    	caffemodel = os.path.join(cfg.ROOT_DIR, 'output/rfcn_end2end/solar_panel', NETS[args.demo_net][1])
+#    else:
+    caffemodel = args.demo_net
 
     if not os.path.isfile(caffemodel):
         raise IOError(('{:s} not found.\n').format(caffemodel))
@@ -199,7 +202,11 @@ if __name__ == '__main__':
 
     if args.input_dir:
         for file in os.listdir(args.input_dir):
-          out_file = os.path.join(args.input_dir, 'output', file)
+	  output_path = os.path.join(args.input_dir, 'output')
+          if not os.path.exists(output_path):
+	      os.makedirs(output_path)
+
+          out_file = os.path.join(output_path, file)
   	  if not os.path.isfile(out_file):
             if file.endswith(".jpg"):
 		demo(net, file, args.input_dir)
