@@ -28,7 +28,7 @@ class chimney_streetview(imdb):
         self._image_set = image_set
         self._data_path = os.path.join(self._get_default_path(), 'chimney_streetview')
         self._classes = ('__background__', # always index 0
-			 'chimney', 'post', 'AC')
+			 'chimney', 'post', 'ac')
 #                         'aeroplane', 'bicycle', 'bird', 'boat',
 #                         'bottle', 'bus', 'car', 'cat', 'chair',
 #                         'cow', 'diningtable', 'dog', 'horse',
