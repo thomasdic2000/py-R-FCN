@@ -21,14 +21,14 @@ from fast_rcnn.config import cfg
 
 #class pascal_voc(imdb):
 #    def __init__(self, image_set, year, devkit_path=None):
-class solar_panel(imdb):
+class chimney_streetview(imdb):
     def __init__(self, image_set):
-        imdb.__init__(self, 'solar_panel')
+        imdb.__init__(self, 'chimney_streetview')
         
         self._image_set = image_set
-        self._data_path = os.path.join(self._get_default_path(), 'solar_panel')
+        self._data_path = os.path.join(self._get_default_path(), 'chimney_streetview')
         self._classes = ('__background__', # always index 0
-			 'solar')
+			 'chimney', 'post', 'AC')
 #                         'aeroplane', 'bicycle', 'bird', 'boat',
 #                         'bottle', 'bus', 'car', 'cat', 'chair',
 #                         'cow', 'diningtable', 'dog', 'horse',

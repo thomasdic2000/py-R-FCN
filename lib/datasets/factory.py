@@ -11,8 +11,15 @@ __sets = {}
 
 from datasets.pascal_voc import pascal_voc
 from datasets.solar_panel import solar_panel
+from datasets.chimney_streetview import chimney_streetview
+
 from datasets.coco import coco
 import numpy as np
+
+# set up chimney_streetview_train
+for split in ['train', 'val', 'trainval', 'test']:
+    name = 'chimney_streetview_{}'.format(split)
+    __sets[name] = (lambda split=split: solar_panel(split))
 
 # set up solar_panel_train 
 for split in ['train', 'val', 'trainval', 'test']:
