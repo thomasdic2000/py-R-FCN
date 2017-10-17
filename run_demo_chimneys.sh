@@ -1,0 +1,1 @@
+python tools/demo_chimney.py --gpu 0 --cfg experiments/cfgs/rfcn_end2end.yml --net models/chimney_streetview/ResNet-101/rfcn_end2end/test_agnostic.prototxt --model output/rfcn_end2end/chimney_streetview/resnet101_rfcn_iter_40000.caffemodel --input data/chimney_streetview/test/

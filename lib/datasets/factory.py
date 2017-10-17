@@ -19,7 +19,7 @@ import numpy as np
 # set up chimney_streetview_train
 for split in ['train', 'val', 'trainval', 'test']:
     name = 'chimney_streetview_{}'.format(split)
-    __sets[name] = (lambda split=split: solar_panel(split))
+    __sets[name] = (lambda split=split: chimney_streetview(split))
 
 # set up solar_panel_train 
 for split in ['train', 'val', 'trainval', 'test']:
